@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "660674554127",
+    "project_id": "assignment-928fd",
+    "storage_bucket": "assignment-928fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660674554127:android:d7cde86889b37588a8f67a",
+        "android_client_info": {
+          "package_name": "com.example.assignment_portfolio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660674554127-005vh82rlghs988k3onlu807qr7aud9d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmsXLeYKrEDqwD0EoAN7qweY5cU1-jhmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660674554127-005vh82rlghs988k3onlu807qr7aud9d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "660674554127-mra851hs2rs3uvhcamavefe1b2ivhkvg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.assignmentPortfolio"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660674554127:android:1df8ed8fe715471fa8f67a",
+        "android_client_info": {
+          "package_name": "com.example.grow_simplee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660674554127-005vh82rlghs988k3onlu807qr7aud9d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmsXLeYKrEDqwD0EoAN7qweY5cU1-jhmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660674554127-005vh82rlghs988k3onlu807qr7aud9d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "660674554127-mra851hs2rs3uvhcamavefe1b2ivhkvg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.assignmentPortfolio"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
