@@ -111,6 +111,7 @@ class _AddImageState extends State<AddImage> {
               pincode: widget.data2['pincode'],
               accountno: widget.data2['accountno'],
               ifsc: widget.data2['ifsc'],
+              localities: widget.data2['localities'],
               aadhar: '${links['Aadhar']}',
               pancard: '${links['PAN Card']}',
               dl: '${links['DL']}',

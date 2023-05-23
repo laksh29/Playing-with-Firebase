@@ -30,5 +30,7 @@ bool isPincode(String string) {
 
 //   if(isNumber & isCode == true){
 //     return true;
-//   } 
+//   }
 // }
+
+

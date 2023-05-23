@@ -9,6 +9,7 @@ class RiderData {
   String pincode;
   String accountno;
   String ifsc;
+  List localities;
   String aadhar;
   String pancard;
   String dl;
@@ -22,6 +23,7 @@ class RiderData {
     required this.pincode,
     required this.accountno,
     required this.ifsc,
+    required this.localities,
     required this.aadhar,
     required this.pancard,
     required this.dl,
@@ -37,6 +39,7 @@ class RiderData {
       pincode: json['pincode'],
       accountno: json['accountno'],
       ifsc: json['ifsc'],
+      localities: json['localities'],
       aadhar: json['aadhar'],
       pancard: json['pancard'],
       dl: json['dl'],
@@ -66,6 +69,7 @@ class RiderData {
         'pincode': pincode,
         'accountno': accountno,
         'ifsc': ifsc,
+        'localities': localities
       },
       'uploads': {
         'aadhar': aadhar,
@@ -89,6 +93,7 @@ var riderData = ({
   pincode,
   accountno,
   ifsc,
+  localities,
   id,
   aadhar,
   pancard,
@@ -103,6 +108,7 @@ var riderData = ({
     pincode: pincode,
     accountno: accountno,
     ifsc: ifsc,
+    localities: localities,
     aadhar: aadhar,
     pancard: pancard,
     dl: dl,
