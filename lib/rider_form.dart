@@ -63,7 +63,7 @@ class _FormTwoState extends State<FormTwo> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   // builder: (context) => const UploadFiles(),
-                  builder: (context) => const AddImage(),
+                  builder: (context) => AddImage(data2: data2),
                 ),
               );
             } else {

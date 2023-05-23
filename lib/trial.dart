@@ -1,13 +1,15 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:grow_simplee/fb_model.dart';
 import 'package:grow_simplee/style.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'rider.dart';
 
 class AddImage extends StatefulWidget {
-  const AddImage({super.key});
+  const AddImage({super.key, required this.data2});
+  final Map data2;
   @override
   State<AddImage> createState() => _AddImageState();
 }
@@ -102,6 +104,19 @@ class _AddImageState extends State<AddImage> {
                   builder: (context) => const Rider(),
                 ),
                 (route) => false);
+            riderData(
+              name: widget.data2['name'],
+              contactno: widget.data2['contactno'],
+              address: widget.data2['address'],
+              pincode: widget.data2['pincode'],
+              accountno: widget.data2['accountno'],
+              ifsc: widget.data2['ifsc'],
+              aadhar: '${links['Aadhar']}',
+              pancard: '${links['PAN Card']}',
+              dl: '${links['DL']}',
+              bankcheque: '${links['Bank Cheque']}',
+              photo: '${links['Photo']}',
+            );
           }
         },
         child: const Text("Next"),

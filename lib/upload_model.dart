@@ -3,12 +3,17 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Details {
-  final String name;
-  final String contactno;
-  final String address;
-  final String pincode;
-  final String accountno;
-  final String ifsc;
+  String name;
+  String contactno;
+  String address;
+  String pincode;
+  String accountno;
+  String ifsc;
+  // String aadhar;
+  // String pancard;
+  // String dl;
+  // String bankcheque;
+  // String photo;
 
   Details({
     required this.name,
@@ -17,18 +22,39 @@ class Details {
     required this.pincode,
     required this.accountno,
     required this.ifsc,
+    // required this.aadhar,
+    // required this.pancard,
+    // required this.dl,
+    // required this.bankcheque,
+    // required this.photo,
   });
 
   factory Details.fromJson(Map<String, dynamic> json) {
     return Details(
       name: json['name'],
-      contactno: (json['contactno']),
+      contactno: json['contactno'],
       address: json['address'],
       pincode: json['pincode'],
       accountno: json['accountno'],
       ifsc: json['ifsc'],
+      // aadhar: json['aadhar'],
+      // pancard: json['pancard'],
+      // dl: json['dl'],
+      // bankcheque: json['bankcheque'],
+      // photo: json['photo'],
     );
   }
+
+  // factory Details.fromJson(Map<String, dynamic> json) {
+  //   return Details(
+  //     name: json['name'],
+  //     contactno: (json['contactno']),
+  //     address: json['address'],
+  //     pincode: json['pincode'],
+  //     accountno: json['accountno'],
+  //     ifsc: json['ifsc'],
+  //   );
+  // }
 
   toJson() {
     return {
@@ -80,18 +106,24 @@ class Upload {
 
 // initiate firestore
 final db = FirebaseFirestore.instance;
-
+// var uuid = const Uuid();
+final docRef = db.collection('Rider');
 // details function
-void details = ({
+var riderDetails = ({
   name,
   contactno,
   address,
   pincode,
   accountno,
   ifsc,
+  id,
+  aadhar,
+  pancard,
+  dl,
+  bankcheque,
+  photo,
 }) async {
-  final docRef = db.collection('Rider').doc();
-  Details rider = Details(
+  Details riderDetails = Details(
     name: name,
     contactno: contactno,
     address: address,
@@ -100,30 +132,31 @@ void details = ({
     ifsc: ifsc,
   );
 
+
+
   // await db.collection("Rider").add(rider.toJson());
 
-  await docRef.set(rider.toJson()).then(
-      (value) => log("Rider added successfully"),
-      onError: (e) => log("Error adding rider: $e"));
+  await docRef.add(riderDetails.toJson());
 };
 
 // upload function
-void upload({
+var riderUpload = ({
   aadhar,
   pancard,
   dl,
   bankcheque,
   photo,
+  id,
 }) async {
-  final docRef = db.collection('Rider').doc();
-  Upload rider = Upload(
+  Upload riderUpload = Upload(
     aadhar: aadhar,
     pancard: pancard,
     dl: dl,
     bankcheque: bankcheque,
     photo: photo,
   );
-  await docRef.set(rider.toJson()).then(
+
+  await docRef.add(riderUpload.toJson()).then(
       (value) => log("Rider verified successfully"),
       onError: (e) => log("Error verifying rider: $e"));
-}
+};
