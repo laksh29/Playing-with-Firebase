@@ -152,31 +152,3 @@ class ViewRiderDetails extends StatelessWidget {
         ));
   }
 }
-
-
-// SingleChildScrollView(
-//         child: Column(
-//           children: [
-//             Container(
-//               padding: const EdgeInsets.symmetric(horizontal: 15.0),
-//               height: 300,
-//               width: width,
-//             ),
-//             const Divider(),
-//             Container(
-//                 width: MediaQuery.of(context).size.width,
-//                 margin: const EdgeInsets.symmetric(
-//                   vertical: 10.0,
-//                   horizontal: 20.0,
-//                 ),
-//                 padding: const EdgeInsets.all(20.0),
-//                 decoration: BoxDecoration(
-//                   border: Border.all(color: Colors.black),
-//                   color: Colors.white,
-//                 ),
-//                 child:  Row(
-//                   children: [Text('Name: '), Text(db.)],
-//                 )),
-//           ],
-//         ),
-//       ),

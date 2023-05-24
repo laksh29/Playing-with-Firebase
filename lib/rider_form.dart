@@ -61,11 +61,13 @@ class _FormTwoState extends State<FormTwo> {
         title: const Text("Dynamic Form"),
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             Form(
               key: _formKey,
               child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: fields.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -87,12 +89,17 @@ class _FormTwoState extends State<FormTwo> {
           if (_formKey.currentState!.validate()) {
             var snackbar = _validate(data2);
             if (snackbar == true) {
-              data2["localities"] = listOFSelectedItem;
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => AddImage(data2: data2),
-                ),
-              );
+              if (listOFSelectedItem.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Choose atleat 1 locality")));
+              } else {
+                data2["localities"] = listOFSelectedItem;
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => AddImage(data2: data2),
+                  ),
+                );
+              }
             } else {
               final snackBar = SnackBar(content: Text(snackbar));
               ScaffoldMessenger.of(context).showSnackBar(snackBar);

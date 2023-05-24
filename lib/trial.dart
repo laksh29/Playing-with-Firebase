@@ -44,11 +44,6 @@ class _AddImageState extends State<AddImage> {
   _openCamera(field) async {
     imageFile = await ImagePicker().pickImage(source: ImageSource.camera);
     setState(() {
-      // links[field] = File(imageFile!.path);
-      // if (links[field] != null) {
-      //   upload[field] = !upload[field]!;
-      // }
-      // print(links);
       uploadImageToFirebase(context, imageFile, field);
     });
   }
@@ -70,12 +65,6 @@ class _AddImageState extends State<AddImage> {
 
     links[field] = url.toString();
     upload[field] = !upload[field]!;
-
-    // then((value) {
-    //   links[field] = value;
-    //   print(links);
-    //   upload[field] = !upload[field]!;
-    // });
   }
 
   @override
@@ -171,9 +160,7 @@ class _AddImageState extends State<AddImage> {
                             _openCamera(field);
                           },
                           child: const Text("Add Photo"))
-                      :
-                      // Image.file(File(links[field]!.path)),
-                      Image.network(links[field].toString()));
+                      : Image.network(links[field].toString()));
             },
           );
         },
