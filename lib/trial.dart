@@ -165,28 +165,3 @@ class _AddImageState extends State<AddImage> {
         child: const Text("Add"));
   }
 }
-
-
-
-// GestureDetector(
-//         onTap: _openGallery,
-//         child: imageFile == null
-//             ? Container(
-//                 decoration: BoxDecoration(
-//                     color: Colors.red[50],
-//                     border: Border.all(color: Colors.red, width: 1.0),
-//                     borderRadius: BorderRadius.circular(10.0)),
-//                 child: const Column(
-//                   children: <Widget>[
-//                     SizedBox(height: 30.0),
-//                     Icon(Icons.camera_alt, color: Colors.red),
-//                     SizedBox(height: 10.0),
-//                     Text('Take Image of the Item',
-//                         style: TextStyle(color: Colors.red)),
-//                     SizedBox(height: 30.0)
-//                   ],
-//                 ))
-//             : Image.file(
-//                 File(imageFile!.path),
-//               ),
-//       ),

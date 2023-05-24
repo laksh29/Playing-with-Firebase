@@ -3,18 +3,18 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RiderData {
-  String name;
-  String contactno;
-  String address;
-  String pincode;
-  String accountno;
-  String ifsc;
-  List localities;
-  String aadhar;
-  String pancard;
-  String dl;
-  String bankcheque;
-  String photo;
+  String? name;
+  String? contactno;
+  String? address;
+  String? pincode;
+  String? accountno;
+  String? ifsc;
+  List? localities;
+  String? aadhar;
+  String? pancard;
+  String? dl;
+  String? bankcheque;
+  String? photo;
 
   RiderData({
     required this.name,
@@ -48,17 +48,24 @@ class RiderData {
     );
   }
 
-  // 'name': name,
-  //     'contactno': contactno,
-  //     'address': address,
-  //     'pincode': pincode,
-  //     'accountno': accountno,
-  //     'ifsc': ifsc,
-  //     'aadhar': aadhar,
-  //     'pancard': pancard,
-  //     'dl': dl,
-  //     'bankcheque': bankcheque,
-  //     'photo': photo,
+  factory RiderData.fromSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> document) {
+    final data = document.data()!;
+    return RiderData(
+      name: data['name'],
+      contactno: data['contactno'],
+      address: data['address'],
+      pincode: data['pincode'],
+      accountno: data['accountno'],
+      ifsc: data['ifsc'],
+      localities: data['localities'],
+      aadhar: data['aadhar'],
+      pancard: data['pancard'],
+      dl: data['dl'],
+      bankcheque: data['bankcheque'],
+      photo: data['photo'],
+    );
+  }
 
   toJson() {
     return {
@@ -121,3 +128,23 @@ var riderData = ({
         onError: (e) => log("Errror registering rider: $e"),
       );
 };
+
+List<RiderData> allRiderData = [];
+int lengthOfRider = 0;
+
+// Future<List<RiderData>> getAllRiders() async {
+//   var snapshot = await docRef.get();
+//   var riderData = snapshot.docs.map((e) => RiderData.fromSnapshot(e)).toList();
+//   // allRiderData = riderData;
+//   // print(allRiderData);
+//   return riderData;
+// }
+
+Stream<List<RiderData>> getAllRiders() => FirebaseFirestore.instance
+    .collection("Rider")
+    .snapshots()
+    .map((event) => event.docs
+        .map(
+          (e) => RiderData.fromJson(e.data()),
+        )
+        .toList());

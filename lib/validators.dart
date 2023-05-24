@@ -15,22 +15,3 @@ bool isPincode(String string) {
     return numericRegex.hasMatch(string);
   }
 }
-
-// bool isComplete(isNumber, isCode){
-//   if(isNumber & isCode == true){
-//     return true;
-//   }else{
-//     return false;
-//   }
-// }
-
-// bool verifying(number, code){
-//   final isNumber = isPhoneNumber(number);
-//   final isCode = isPincode(code);
-
-//   if(isNumber & isCode == true){
-//     return true;
-//   }
-// }
-
-

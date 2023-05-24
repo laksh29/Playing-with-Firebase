@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'data_list.dart';
-import 'list_view.dart';
+import 'list_view_2.dart';
 import 'rider_form.dart';
 
 class Rider extends StatefulWidget {
@@ -24,9 +23,11 @@ class _RiderState extends State<Rider> {
         title: const Text("Riders"),
         actions: [buildToggle()],
       ),
-      body: ShowcaseList(
-        showList: isVerified ? verified : unVerified,
-      ),
+      body: !isVerified
+          ? const Center(
+              child: Text("All Riders are verified"),
+            )
+          : DisplayList(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
