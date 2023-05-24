@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:grow_simplee/fb_model.dart';
@@ -39,6 +40,20 @@ class _RiderDetailsState extends State<RiderDetails> {
   }
 
   Widget buildViewRider(user) {
+    List images = [
+      user['uploads']['aadhar'],
+      user['uploads']['bankcheque'],
+      user['uploads']['dl'],
+      user['uploads']['pancard'],
+      user['uploads']['photo'],
+    ];
+    List fields = [
+      'Aadhar',
+      'Bank Cheque',
+      'DL',
+      'PAN Card',
+      'Photos',
+    ];
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -46,6 +61,37 @@ class _RiderDetailsState extends State<RiderDetails> {
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             height: 300,
             width: MediaQuery.of(context).size.width,
+            child: CarouselSlider.builder(
+              itemCount: images.length,
+              options: CarouselOptions(
+                height: 300,
+                enableInfiniteScroll: false,
+                enlargeCenterPage: true,
+              ),
+              itemBuilder: (context, index, realIndex) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(vertical: 15.0),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 6,
+                        child: SizedBox(
+                          child: Image.network(
+                            images[index],
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                          flex: 1,
+                          child: Center(
+                            child: Text(fields[index]),
+                          ))
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
           const Divider(),
           ViewRiderDetails(

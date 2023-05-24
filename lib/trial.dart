@@ -1,11 +1,12 @@
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:grow_simplee/fb_model.dart';
-import 'package:grow_simplee/style.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'fb_model.dart';
 import 'rider.dart';
+import 'style.dart';
 
 class AddImage extends StatefulWidget {
   const AddImage({super.key, required this.data2});
@@ -17,7 +18,7 @@ class AddImage extends StatefulWidget {
 class _AddImageState extends State<AddImage> {
   bool uploadB = false;
 
-  Map<String, File?> links = {
+  Map<String, String?> links = {
     "Aadhar": null,
     "PAN Card": null,
     "DL": null,
@@ -40,15 +41,41 @@ class _AddImageState extends State<AddImage> {
     "Photo",
   ];
   XFile? imageFile;
-  _openCamera(photo) async {
+  _openCamera(field) async {
     imageFile = await ImagePicker().pickImage(source: ImageSource.camera);
     setState(() {
-      links[photo] = File(imageFile!.path);
-      if (links[photo] != null) {
-        upload[photo] = !upload[photo]!;
-      }
+      // links[field] = File(imageFile!.path);
+      // if (links[field] != null) {
+      //   upload[field] = !upload[field]!;
+      // }
       // print(links);
+      uploadImageToFirebase(context, imageFile, field);
     });
+  }
+
+  Future uploadImageToFirebase(
+      BuildContext context, imageCaptured, field) async {
+    // imageCaptured will replacee links['aadhar']
+    final pickedFile = imageCaptured;
+
+    final path = 'uploads/${widget.data2['name']}/$field';
+    final file = File(pickedFile!.path);
+
+    final storageRef = FirebaseStorage.instance.ref().child(path);
+    final uploadImage = storageRef.putFile(file);
+
+    final imageSnapshot = await uploadImage.whenComplete(() {});
+
+    final url = await imageSnapshot.ref.getDownloadURL();
+
+    links[field] = url.toString();
+    upload[field] = !upload[field]!;
+
+    // then((value) {
+    //   links[field] = value;
+    //   print(links);
+    //   upload[field] = !upload[field]!;
+    // });
   }
 
   @override
@@ -137,15 +164,16 @@ class _AddImageState extends State<AddImage> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: Text(field),
-                content: links[field] == null
-                    ? ElevatedButton(
-                        onPressed: () {
-                          _openCamera(field);
-                        },
-                        child: const Text("Add Photo"))
-                    : Image.file(File(links[field]!.path)),
-              );
+                  title: Text(field),
+                  content: links[field] == null
+                      ? ElevatedButton(
+                          onPressed: () {
+                            _openCamera(field);
+                          },
+                          child: const Text("Add Photo"))
+                      :
+                      // Image.file(File(links[field]!.path)),
+                      Image.network(links[field].toString()));
             },
           );
         },
