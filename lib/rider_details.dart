@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:grow_simplee/fb_model.dart';
+import 'package:grow_simplee/style.dart';
 
 class RiderDetails extends StatefulWidget {
   final String docid;
@@ -114,9 +115,35 @@ class _RiderDetailsState extends State<RiderDetails> {
             field: "Localities: ",
             data: '${user['details']['localities']}',
           ),
+          // const SizedBox(height: 10.0),
+          buildHeight(20.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const SomeButton(tag: "Reject"),
+              buildWidth(20.0),
+              const SomeButton(tag: "Accept"),
+            ],
+          )
         ],
       ),
     );
+  }
+}
+
+class SomeButton extends StatelessWidget {
+  final String tag;
+  const SomeButton({super.key, required this.tag});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0)),
+        onPressed: () {},
+        child: Text(tag));
   }
 }
 
