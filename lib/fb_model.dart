@@ -140,11 +140,20 @@ int lengthOfRider = 0;
 //   return riderData;
 // }
 
-Stream<List<RiderData>> getAllRiders() => FirebaseFirestore.instance
-    .collection("Rider")
-    .snapshots()
-    .map((event) => event.docs
-        .map(
-          (e) => RiderData.fromJson(e.data()),
-        )
-        .toList());
+// Stream<List<RiderData>> getAllRiders() => FirebaseFirestore.instance
+//     .collection("Rider")
+//     .snapshots()
+//     .map((event) => event.docs
+//         .map(
+//           (e) => RiderData.fromJson(e.data()),
+//         )
+//         .toList());
+
+Future readRider(String docId) async {
+  final docRef = FirebaseFirestore.instance.collection("Rider").doc(docId);
+  final snapshot = await docRef.get();
+
+  if (snapshot.exists) {
+    return snapshot.data();
+  }
+}
