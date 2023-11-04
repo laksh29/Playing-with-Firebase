@@ -1,16 +1,13 @@
-# grow_simplee
+# Grow Simplee
 
-A new Flutter project.
+A project where I used Firebase Database to store data from Form and Firebase Storage to store the Images. 
+The home page tile on the left swipe removes the tile from the state and the right swipe displays the images in carousels and data about the user.
 
-## Getting Started
+## Tech Stack
+- Flutter
+- Firebase Storage
+- Firebase Database
 
-This project is a starting point for a Flutter application.
+## APK File
+[Grow Simplee APK v1](https://drive.google.com/file/d/1X_F2UK0zpniUry2nMAsM48hZRWUMMoqj/view)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
